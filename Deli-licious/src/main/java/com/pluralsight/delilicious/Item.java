@@ -1,6 +1,6 @@
 package com.pluralsight.delilicious;
 
-abstract public class Items {
+abstract public class Item {
 
     abstract public double getprice();
 }

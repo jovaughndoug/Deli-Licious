@@ -24,10 +24,10 @@ public class Sandwich extends Item {
     }
 
     public enum Breadtype {
-        White,
-        Wheat,
-        Rye,
-        Wrap;
+        WHITE,
+        WHEAT,
+        RYE,
+        WRAP;
     }
 
     public enum SandwichSize {
@@ -39,20 +39,21 @@ public class Sandwich extends Item {
     @Override
     public double getprice() {
         price = 0;
-        for(Topping topping: toppingOnSandwich) {
-            price += 5.50;
-        }
-            if (sandwichSize == SandwichSize.FOURINCH){
-                price += 5.50;
-            } else if (sandwichSize==SandwichSize.EIGHTINCH) {
-                price+= 7;
+        for (Topping topping : toppingOnSandwich) {
 
-            } else if (sandwichSize==SandwichSize.TWELVEINCH) {
+            if (sandwichSize == SandwichSize.FOURINCH) {
+                price += 5.50;
+            } else if (sandwichSize == SandwichSize.EIGHTINCH) {
+                price += 7;
+
+            } else if (sandwichSize == SandwichSize.TWELVEINCH) {
                 price += 8.50;
 
             }
             return price;
 
+        }
+        return price;
     }
 }
 

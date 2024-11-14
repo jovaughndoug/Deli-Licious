@@ -7,7 +7,6 @@ public class Drinks extends Item {
 
     public Drinks(DrinkSize drinkSize, double price, String name) {
         this.drinkSize = drinkSize;
-        this.price = price;
         this.name = name;
     }
     public enum DrinkSize{

@@ -33,21 +33,24 @@ This application is a Point-of-Sale (POS) system designed for a deli. It allows 
 
 ## New Lessons
 
-### Using File I/O
-Implemented `BufferedWriter` and `BufferedReader` to handle writing and reading receipt files effectively.
+### Enum Classes
+using enum classes to create list of values easier.
+![image](https://github.com/user-attachments/assets/dcad5003-9068-4a83-8937-c6677060f070)
+
 
 ### Leveraging LocalDateTime
 Used `LocalDateTime` to generate unique timestamps for receipt filenames, ensuring no file is overwritten.
 
-### Switch-Case for Menu Options
-Simplified user interactions with a `switch` statement to handle menu selections for modifying and confirming orders.
+### Abstract Classes
+Creating abstract classes and learning to connect classes that are similar or share variables.
+![image](https://github.com/user-attachments/assets/0b0894b8-8870-43d0-ba4c-4e70e5e9666b)
+
 
 
 ## Lessons Learned
 - **Switch-Case Statements**: Simplifies control flow for multi-option menus, making the code more readable and maintainable.
 - **Buffered I/O**: Efficiently handles file operations for saving and reading data.
 - **Encapsulation**: Improved Encapsulation
-- **Abstract Classes**: Creating abstract classes and learning to connect classes that are similar or share variables.
 - **Error Handling**: error handling for file operations and menus, ensuring users are informed of issues without crashing the system.
 
 ## Future Improvements

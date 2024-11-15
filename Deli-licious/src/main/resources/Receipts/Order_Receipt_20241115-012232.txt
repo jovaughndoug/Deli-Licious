@@ -1,0 +1,8 @@
+========== Order Summary ==========
+Item 1: Sandwich | Toasted: true | Size: FOURINCH | Bread: WHEAT | Toppings: [Topping: MUSHROOMS, Sauce: VINAIGRETTE, Meat| ROASTBEEF, Cheese| ProvoloneCheese ] | Price: $8.25
+Item 2: Drink|MEDIUM|2.50|Coke
+Item 3: Chips|Lays|1.50
+-----------------------------------
+Total Items: 3
+Total Price: $12.25
+===================================

@@ -34,6 +34,6 @@ public class Drinks extends Item {
 
     @Override
     public String toString() {
-        return String.format("Drink|%s|%.2f|%s", drinkSize, price, name);
+        return String.format("Drink|%s|%.2f|%s", drinkSize, price, name); // format the drink price to include two decimals
     }
 }

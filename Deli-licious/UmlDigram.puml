@@ -1,0 +1,178 @@
+@startuml
+enum com.pluralsight.delilicious.Sauce {
++  MAYO
++  MUSTARD
++  RANCH
++  VINAIGRETTE
++  AU_JUS
++  KETCHUP
+}
+
+class com.pluralsight.delilicious.Orders {
+- List<Item> itemList
+- String name
+- int orderNumber
+- LocalDateTime localDateTime
+- {static} int currentOrderNumber
++ void addItem(Item)
++ double getTotalPrice()
+- int generateOrderNumber()
++ String toString()
++ int getOrderNumber()
++ List<Item> getItemList()
++ LocalDateTime getLocalDateTime()
++ StringBuilder displayOrderToString()
+}
+
+
+class com.pluralsight.delilicious.Cheese {
+- CheeseChoice cheeseChoice
++ CheeseChoice getCheeseChoice()
++ double getprice()
++ String toString()
+}
+
+
+enum com.pluralsight.delilicious.CheeseChoice {
++  AmericanCheese
++  SWISSCHEESE
++  ProvoloneCheese
++  CheddarCheese
+}
+
+class com.pluralsight.delilicious.ReceiptManager {
++ void createReceipt(Orders)
+}
+
+class com.pluralsight.delilicious.PremiumTopping {
+~ double price
+}
+
+class com.pluralsight.delilicious.RegularTopping {
+- Sauce sauce
+- RegularToppingsOptions regularToppingsOptions
++ RegularToppingsOptions getRegularToppingsOptions()
++ boolean hasExtra()
++ double getprice()
++ String toString()
+}
+
+
+class com.pluralsight.delilicious.Sandwich {
+- double price
+- boolean isToasted
+- SandwichSize sandwichSize
+- Breadtype breadtype
+- ArrayList<Topping> toppingOnSandwich
++ SandwichSize getSandwichSize()
++ void addTopping(Topping)
++ void setIsToasted(boolean)
++ double getprice()
++ String toString()
+}
+
+
+enum com.pluralsight.delilicious.Breadtype {
++  WHITE
++  WHEAT
++  RYE
++  WRAP
+}
+
+enum com.pluralsight.delilicious.SandwichSize {
++  FOURINCH
++  EIGHTINCH
++  TWELVEINCH
+}
+
+abstract class com.pluralsight.delilicious.Item {
++ {abstract}double getprice()
+}
+
+class com.pluralsight.delilicious.Program {
+}
+class com.pluralsight.delilicious.Meats {
+~ MeatChoice meatType
++ MeatChoice getMeatType()
++ double getprice()
++ String toString()
+}
+
+
+enum com.pluralsight.delilicious.MeatChoice {
++  STEAK
++  HAM
++  SALAMI
++  ROASTBEEF
++  CHICKEN
++  BACON
+}
+
+class com.pluralsight.delilicious.Chips {
+- String name
++ double getprice()
++ String getName()
++ String toString()
+}
+
+
+class com.pluralsight.delilicious.Topping {
+# boolean hasExtra
+# Sandwich.SandwichSize size
++ double getprice()
+}
+
+
+enum com.pluralsight.delilicious.RegularToppingsOptions {
++  LETTUCE
++  MUSHROOMS
++  GUACAMOLE
++  PICKLES
++  CUCUMBERS
++  JALAPENOS
++  TOMATOES
++  ONIONS
++  PEPPERS
+}
+
+class com.pluralsight.delilicious.TerminalUI {
++ {static} void main(String[])
++ {static} void startScreen()
++ {static} void orderScreen()
++ {static} boolean confirmOrderScreen(Orders)
++ {static} Sandwich addSandwich()
++ {static} Drinks addDrink()
++ {static} Chips addChips()
++ {static} ArrayList<Topping> addToppings(Sandwich.SandwichSize)
++ {static} Sauce selectSauce()
++ {static} void addPremiumMeat(ArrayList<Topping>,Sandwich.SandwichSize)
++ {static} void addPremiumCheese(ArrayList<Topping>,Sandwich.SandwichSize)
+}
+
+class com.pluralsight.delilicious.Drinks {
+- DrinkSize drinkSize
+- double price
+- String name
+- void setPriceBasedOnSize(DrinkSize)
++ double getprice()
++ String toString()
+}
+
+
+enum com.pluralsight.delilicious.DrinkSize {
++  SMALL
++  MEDIUM
++  LARGE
+}
+
+
+
+com.pluralsight.delilicious.PremiumTopping <|-- com.pluralsight.delilicious.Cheese
+com.pluralsight.delilicious.Topping <|-- com.pluralsight.delilicious.PremiumTopping
+com.pluralsight.delilicious.Topping <|-- com.pluralsight.delilicious.RegularTopping
+com.pluralsight.delilicious.Item <|-- com.pluralsight.delilicious.Sandwich
+com.pluralsight.delilicious.PremiumTopping <|-- com.pluralsight.delilicious.Meats
+com.pluralsight.delilicious.Item <|-- com.pluralsight.delilicious.Chips
+com.pluralsight.delilicious.Item <|-- com.pluralsight.delilicious.Topping
+com.pluralsight.delilicious.Item <|-- com.pluralsight.delilicious.Drinks
+@enduml

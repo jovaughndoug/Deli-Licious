@@ -2,7 +2,7 @@ package com.pluralsight.delilicious;
 
 public class Drinks extends Item {
     private DrinkSize drinkSize;
-    private double  price;
+    private double price;
     private String name;
 
     public Drinks(DrinkSize drinkSize, String name) {
@@ -34,6 +34,6 @@ public class Drinks extends Item {
 
     @Override
     public String toString() {
-        return "Drink|" + drinkSize + "|" + price + "|" + name;
+        return String.format("Drink|%s|%.2f|%s", drinkSize, price, name);
     }
 }

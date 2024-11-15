@@ -8,12 +8,12 @@ public class TerminalUI {
 
 
     // Launches the start screen
-    public static void main(String[] args) {
+    public static void main() {
         startScreen();
 
     }
 
-    // MMethod for Start screen
+    // Method for Start screen
     public static void startScreen() {
         // Create Scanner for while loop
         Scanner input = new Scanner(System.in);
@@ -259,7 +259,7 @@ public class TerminalUI {
     public static Chips addChips() {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Enter the type of chips:");
+        System.out.println("Enter Chips you would like:");
         String name = scan.nextLine();
         return new Chips(name);
     }
@@ -267,39 +267,38 @@ public class TerminalUI {
     public static ArrayList<Topping> addToppings(Sandwich.SandwichSize sandwichSize) {
         Scanner scan = new Scanner(System.in);
         ArrayList<Topping> toppings = new ArrayList<>();
-        Sauce selectedSauce = null; // Variable to store selected sauce
+
+        // Prompt for sauce selection at the beginning
+        Sauce selectedSauce = selectSauce();
+        System.out.println("You selected the sauce: " + (selectedSauce != null ? selectedSauce : "No Sauce"));
 
         while (true) {
             System.out.println("Select a topping for your sandwich:");
             System.out.println("""
-                1) Lettuce
-                2) Mushrooms
-                3) Guacamole
-                4) Pickles
-                5) Cucumbers
-                6) Jalapenos
-                7) Tomatoes
-                8) Onions
-                9) Peppers
-                10) Done with regular toppings
-                """);
+            1) Lettuce
+            2) Mushrooms
+            3) Guacamole
+            4) Pickles
+            5) Cucumbers
+            6) Jalapenos
+            7) Tomatoes
+            8) Onions
+            9) Peppers
+            10) Done with regular toppings
+            """);
 
             try {
                 int toppingChoice = scan.nextInt();
                 scan.nextLine();
 
                 if (toppingChoice == 10) {
-                    // Prompt the user to select a sauce
-                    selectedSauce = selectSauce();
-                    System.out.println("You selected the sauce: " + selectedSauce);
-
-                    // Move on to premium toppings
+                    // Proceed to premium toppings
                     addPremiumMeat(toppings, sandwichSize);
                     addPremiumCheese(toppings, sandwichSize);
                     return toppings;
                 }
 
-                // Ask if the user wants extra for valid regular toppings
+                // Ask if the user wants extra
                 System.out.println("Would you like extra? (yes/no)");
                 boolean hasExtra = scan.nextLine().equalsIgnoreCase("yes");
 
@@ -322,6 +321,7 @@ public class TerminalUI {
             }
         }
     }
+
 
     public static Sauce selectSauce() {
         Scanner scan = new Scanner(System.in);

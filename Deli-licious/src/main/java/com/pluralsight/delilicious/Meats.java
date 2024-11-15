@@ -1,13 +1,13 @@
 package com.pluralsight.delilicious;
 
 public class Meats extends PremiumTopping {
-    Meats meatType;
+    MeatChoice meatType;
 
-    public Meats(boolean hasExtra, Sandwich.SandwichSize size, Meats meatType) {
+    public Meats(boolean hasExtra, Sandwich.SandwichSize size, MeatChoice meatType) {
         super(hasExtra, size);
         this.meatType = meatType;
     }
-    public Meats getMeatType(){
+    public MeatChoice getMeatType(){
         return meatType;
     }
 
@@ -30,18 +30,25 @@ public class Meats extends PremiumTopping {
     public enum MeatChoice{
     //Meat Choices
     STEAK,
-    Ham,
-    Salami,
-    RoastBeef,
-    Chicken,
-    Bacon;
-    //String simpleName;
+    HAM,
+    SALAMI,
+    ROASTBEEF,
+    CHICKEN,
+    BACON
+        //String simpleName;
     //MeatChoice(String simpleName){
         //this.simpleName = simpleName;
    }
    // String getSimpleName(){
        // return simpleName;
-   }
+
+    @Override
+    public String toString() {
+        return String.format("Meat| %s",meatType.name());
+
+
+    }
+}
 
 
 //}

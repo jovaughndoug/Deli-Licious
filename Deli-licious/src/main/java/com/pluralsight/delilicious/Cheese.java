@@ -35,6 +35,12 @@ public class Cheese extends PremiumTopping {
         }
         return price;
     }
+    @Override
+    public String toString() {
+        return String.format("Cheese| %s",cheeseChoice.name());
+
+
+    }
 }
 
 

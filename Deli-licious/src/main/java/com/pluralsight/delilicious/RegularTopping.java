@@ -23,11 +23,10 @@ public class RegularTopping extends Topping {
         return super.getprice();
     }
 
-    // Override the toString method to use String.format() for formatting the output
     @Override
     public String toString() {
         // Use String.format() to format the output as "Topping Name: Lettuce"
-        return String.format("Topping: %s", regularToppingsOptions.name());
+        return String.format(" %s", regularToppingsOptions.name());
 
 
     }

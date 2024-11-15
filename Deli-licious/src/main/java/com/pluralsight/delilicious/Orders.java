@@ -47,7 +47,7 @@ public class Orders {
                 .append("Items:\n");
 
         for (Item item : itemList) {
-            orderSummary.append(item.toString()).append("\n"); // Assuming each item has a custom toString() method
+            orderSummary.append(item.toString()).append("\n");
         }
 
         orderSummary.append("Total Price: ").append(getTotalPrice()).append("\n");

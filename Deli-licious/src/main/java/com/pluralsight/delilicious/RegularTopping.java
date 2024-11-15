@@ -1,14 +1,17 @@
 package com.pluralsight.delilicious;
 
 public class RegularTopping extends Topping {
+    private final Sauce sauce;
     private final RegularToppingsOptions regularToppingsOptions;
 
-    public RegularTopping(boolean hasExtra, Sandwich.SandwichSize size, RegularToppingsOptions regularToppingsOptions) {
+    public RegularTopping(boolean hasExtra, Sandwich.SandwichSize size, Sauce sauce, RegularToppingsOptions regularToppingsOptions) {
         super(hasExtra, size);
+        this.sauce = sauce;
         this.regularToppingsOptions = regularToppingsOptions;
     }
 
     public RegularToppingsOptions getRegularToppingsOptions() {
+
         return regularToppingsOptions;
     }
 
@@ -25,10 +28,12 @@ public class RegularTopping extends Topping {
 
     @Override
     public String toString() {
-        // Use String.format() to format the output as "Topping Name: Lettuce"
-        return String.format(" %s", regularToppingsOptions.name());
-
-
+        // Check if the user selects a sauce
+        if (sauce != null) {
+            return String.format("Topping: %s, Sauce: %s", regularToppingsOptions.name(), sauce.name());
+        } else {
+            return String.format("Topping: %s, No sauce selected", regularToppingsOptions.name());
+        }
     }
 }
 

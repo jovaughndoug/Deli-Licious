@@ -52,6 +52,7 @@ public class TerminalUI {
         // Creates new Order
         Orders order = new Orders();
 
+
         while (true) {
             // Display menu
             System.out.println("""
@@ -73,9 +74,11 @@ public class TerminalUI {
                     case 2 -> order.addItem(addDrink());
                     case 3 -> order.addItem(addChips()); // Methods adds items to order
                     case 4 -> {
-                        System.out.println(order.displayOrderToString());
-                        //  System.out.println("What is the name for your order?");
-                        return;
+                        boolean exitToStart = confirmOrderScreen(order);
+                        if (exitToStart) {
+                            System.out.println("Returning to the start screen...");
+                            return; // Return to the start screen if user chooses to cancel order
+                        }
                     }
                     case 0 -> {
                         System.out.println("Order canceled.");
@@ -89,6 +92,62 @@ public class TerminalUI {
             }
         }
     }
+
+
+    public static boolean confirmOrderScreen(Orders order) {
+        Scanner scan = new Scanner(System.in);
+
+        // Display the current order
+        System.out.println(order.displayOrderToString());
+
+        // Display menu
+        System.out.println("""
+            =========================
+            Would you like to:
+            1) Confirm Order
+            2) Cancel Order
+            3) Go Back to Order Screen
+            Please select an option (1-3):
+            """);
+
+        try {
+            int userChoice = scan.nextInt();
+            scan.nextLine();
+
+            switch (userChoice) {
+                case 1 -> {
+                    // User confirms the order
+                    System.out.println("Order confirmed. Thank you!");
+
+                    // Create a receipt and save it to the directory
+                    ReceiptManager receiptManager = new ReceiptManager();
+                    receiptManager.createReceipt(order);
+
+                    System.out.println("Your receipt has been saved.");
+                    return true;  // Exit the current menu
+                }
+                case 2 -> {
+                    // User cancels the order
+                    System.out.println("Order canceled.");
+                    return true; // Exit the current menu
+                }
+                case 3 -> {
+                    // User goes back to the order screen
+                    System.out.println("Returning to the order screen...");
+                    return false; // Stay in the current menu
+                }
+                default -> {
+                    System.out.println("Invalid option. Please try again.");
+                }
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a number.");
+            scan.nextLine();
+        }
+        return false;
+    }
+
+
 
     public static Sandwich addSandwich() {
         Scanner scan = new Scanner(System.in);
@@ -208,41 +267,53 @@ public class TerminalUI {
     public static ArrayList<Topping> addToppings(Sandwich.SandwichSize sandwichSize) {
         Scanner scan = new Scanner(System.in);
         ArrayList<Topping> toppings = new ArrayList<>();
+        Sauce selectedSauce = null; // Variable to store selected sauce
 
         while (true) {
             System.out.println("Select a topping for your sandwich:");
             System.out.println("""
-                    1) Lettuce
-                    2) Mushrooms
-                    3) Guacamole
-                    4) Pickles
-                    5) Cucumbers
-                    6) Jalapenos
-                    7) Tomatoes
-                    8) Onions
-                    9) Peppers
-                    10) Done with regular toppings
-                    """);
+                1) Lettuce
+                2) Mushrooms
+                3) Guacamole
+                4) Pickles
+                5) Cucumbers
+                6) Jalapenos
+                7) Tomatoes
+                8) Onions
+                9) Peppers
+                10) Done with regular toppings
+                """);
 
             try {
                 int toppingChoice = scan.nextInt();
                 scan.nextLine();
 
+                if (toppingChoice == 10) {
+                    // Prompt the user to select a sauce
+                    selectedSauce = selectSauce();
+                    System.out.println("You selected the sauce: " + selectedSauce);
+
+                    // Move on to premium toppings
+                    addPremiumMeat(toppings, sandwichSize);
+                    addPremiumCheese(toppings, sandwichSize);
+                    return toppings;
+                }
+
+                // Ask if the user wants extra for valid regular toppings
+                System.out.println("Would you like extra? (yes/no)");
+                boolean hasExtra = scan.nextLine().equalsIgnoreCase("yes");
+
+                // Add the topping based on user choice
                 switch (toppingChoice) {
-                    case 1 -> toppings.add(new RegularTopping(false, sandwichSize, RegularToppingsOptions.LETTUCE));
-                    case 2 -> toppings.add(new RegularTopping(false, sandwichSize, RegularToppingsOptions.MUSHROOMS));
-                    case 3 -> toppings.add(new RegularTopping(false, sandwichSize, RegularToppingsOptions.GUACAMOLE));
-                    case 4 -> toppings.add(new RegularTopping(false, sandwichSize, RegularToppingsOptions.PICKLES));
-                    case 5 -> toppings.add(new RegularTopping(false, sandwichSize, RegularToppingsOptions.CUCUMBERS));
-                    case 6 -> toppings.add(new RegularTopping(false, sandwichSize, RegularToppingsOptions.JALAPENOS));
-                    case 7 -> toppings.add(new RegularTopping(false, sandwichSize, RegularToppingsOptions.TOMATOES));
-                    case 8 -> toppings.add(new RegularTopping(false, sandwichSize, RegularToppingsOptions.ONIONS));
-                    case 9 -> toppings.add(new RegularTopping(false, sandwichSize, RegularToppingsOptions.PEPPERS));
-                    case 10 -> {
-                        addPremiumMeat(toppings, sandwichSize);
-                        addPremiumCheese(toppings, sandwichSize);
-                        return toppings;
-                    }
+                    case 1 -> toppings.add(new RegularTopping(hasExtra, sandwichSize, selectedSauce, RegularToppingsOptions.LETTUCE));
+                    case 2 -> toppings.add(new RegularTopping(hasExtra, sandwichSize, selectedSauce, RegularToppingsOptions.MUSHROOMS));
+                    case 3 -> toppings.add(new RegularTopping(hasExtra, sandwichSize, selectedSauce, RegularToppingsOptions.GUACAMOLE));
+                    case 4 -> toppings.add(new RegularTopping(hasExtra, sandwichSize, selectedSauce, RegularToppingsOptions.PICKLES));
+                    case 5 -> toppings.add(new RegularTopping(hasExtra, sandwichSize, selectedSauce, RegularToppingsOptions.CUCUMBERS));
+                    case 6 -> toppings.add(new RegularTopping(hasExtra, sandwichSize, selectedSauce, RegularToppingsOptions.JALAPENOS));
+                    case 7 -> toppings.add(new RegularTopping(hasExtra, sandwichSize, selectedSauce, RegularToppingsOptions.TOMATOES));
+                    case 8 -> toppings.add(new RegularTopping(hasExtra, sandwichSize, selectedSauce, RegularToppingsOptions.ONIONS));
+                    case 9 -> toppings.add(new RegularTopping(hasExtra, sandwichSize, selectedSauce, RegularToppingsOptions.PEPPERS));
                     default -> System.out.println("Invalid topping choice. Please try again.");
                 }
             } catch (InputMismatchException e) {
@@ -251,6 +322,67 @@ public class TerminalUI {
             }
         }
     }
+
+    public static Sauce selectSauce() {
+        Scanner scan = new Scanner(System.in);
+        boolean sauceLooper = true;
+        Sauce selectedSauce = null;
+
+        while (sauceLooper) {
+            System.out.println("Select a sauce for this sandwich:");
+            System.out.println("""
+                1) Mayo
+                2) Mustard
+                3) Ranch
+                4) Vinaigrette
+                5) Au Jus
+                6) Ketchup
+                7) No Sauce
+                """);
+
+            try {
+                int sauceChoice = scan.nextInt();
+                scan.nextLine();
+
+                switch (sauceChoice) {
+                    case 1 -> {
+                        selectedSauce = Sauce.MAYO;
+                        sauceLooper = false;
+                    }
+                    case 2 -> {
+                        selectedSauce = Sauce.MUSTARD;
+                        sauceLooper = false;
+                    }
+                    case 3 -> {
+                        selectedSauce = Sauce.RANCH;
+                        sauceLooper = false;
+                    }
+                    case 4 -> {
+                        selectedSauce = Sauce.VINAIGRETTE;
+                        sauceLooper = false;
+                    }
+                    case 5 -> {
+                        selectedSauce = Sauce.AU_JUS;
+                        sauceLooper = false;
+                    }
+                    case 6 -> {
+                        selectedSauce = Sauce.KETCHUP;
+                        sauceLooper = false;
+                    }
+                    case 7 -> {
+                        sauceLooper = false;
+                    }
+                    default -> System.out.println("Invalid choice. Please select a valid sauce.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scan.nextLine(); // Clear invalid input
+            }
+        }
+
+        return selectedSauce;
+    }
+
 
     public static void addPremiumMeat(ArrayList<Topping> toppings, Sandwich.SandwichSize sandwichSize) {
         Scanner scan = new Scanner(System.in);
@@ -318,7 +450,7 @@ public class TerminalUI {
                     case 1 -> toppings.add(new Cheese(hasExtra, sandwichSize, Cheese.CheeseChoice.AmericanCheese));
                     case 2 -> toppings.add(new Cheese(hasExtra, sandwichSize, Cheese.CheeseChoice.SWISSCHEESE));
                     case 3 -> toppings.add(new Cheese(hasExtra, sandwichSize, Cheese.CheeseChoice.ProvoloneCheese));
-                    case 4 -> toppings.add(new Cheese(hasExtra, sandwichSize, Cheese.CheeseChoice.CheddarCheees));
+                    case 4 -> toppings.add(new Cheese(hasExtra, sandwichSize, Cheese.CheeseChoice.CheddarCheese));
                     default -> System.out.println("Invalid cheese choice. Please try again.");
                 }
             } catch (InputMismatchException e) {
@@ -327,5 +459,8 @@ public class TerminalUI {
             }
         }
     }
-}
+
+  }
+
+
 

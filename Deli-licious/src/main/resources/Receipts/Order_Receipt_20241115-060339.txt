@@ -1,0 +1,7 @@
+========== Order Summary ==========
+Item 1: Sandwich | Toasted: true | Size: FOURINCH | Bread: WHEAT | Toppings: [Topping: LETTUCE, No sauce selected, Meat| HAM, Cheese| ProvoloneCheese ] | Price: $8.25
+Item 2: Drink|SMALL|2.0|Coke
+-----------------------------------
+Total Items: 2
+Total Price: $10.25
+===================================

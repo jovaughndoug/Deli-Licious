@@ -16,7 +16,7 @@ public class Cheese extends PremiumTopping {
         AmericanCheese,
         SWISSCHEESE,
         ProvoloneCheese,
-        CheddarCheees,
+        CheddarCheese,
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Cheese extends PremiumTopping {
     }
     @Override
     public String toString() {
-        return String.format("Cheese| %s",cheeseChoice.name());
+        return String.format("Cheese| %s ",cheeseChoice.name());
 
 
     }

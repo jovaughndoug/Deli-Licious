@@ -3,11 +3,9 @@ package com.pluralsight.delilicious;
 import javax.swing.*;
 import javax.swing.JOptionPane;
 import java.awt.*;
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.List;
 
-public class UserInterface {
+public class GraphicalUserInterface {
 }
 
 class POSMenu {

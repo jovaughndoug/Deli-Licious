@@ -1,0 +1,9 @@
+========== Order Summary ==========
+Item 1: Sandwich | Toasted: true | Size: FOURINCH | Bread: WHEAT | Toppings: [Topping: LETTUCE, Sauce: MAYO, Topping: MUSHROOMS, Meat| STEAK, Cheese| AmericanCheese ] | Price: $9.75
+Item 2: Drink|SMALL|2.00|Coke
+Item 3: Chips|Lays|1.50
+Item 4: Sandwich | Toasted: true | Size: FOURINCH | Bread: WHEAT | Toppings: [Topping: MUSHROOMS, No sauce selected, Meat| SALAMI, Cheese| CheddarCheese ] | Price: $8.25
+-----------------------------------
+Total Items: 4
+Total Price: $21.50
+===================================

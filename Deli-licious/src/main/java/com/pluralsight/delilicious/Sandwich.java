@@ -3,11 +3,10 @@ package com.pluralsight.delilicious;
 import java.util.ArrayList;
 
 public class Sandwich extends Item {
-    private double price;
-    private boolean isToasted;
-    private SandwichSize sandwichSize;
-    private Breadtype breadtype;
-    private ArrayList<Topping> toppingOnSandwich;
+    private final boolean isToasted;
+    private final SandwichSize sandwichSize;
+    private final Breadtype breadtype;
+    private final ArrayList<Topping> toppingOnSandwich;
 
     public Sandwich(boolean isToasted, SandwichSize sandwichSize, Breadtype breadtype, ArrayList<Topping> toppingOnSandwich) {
         this.isToasted = isToasted;
@@ -18,10 +17,6 @@ public class Sandwich extends Item {
 
     public SandwichSize getSandwichSize() {
         return sandwichSize;
-    }
-    public void addTopping(Topping topping){
-        toppingOnSandwich.add(topping);
-
     }
 
     public void setIsToasted(boolean b) {
@@ -41,7 +36,7 @@ public class Sandwich extends Item {
     }
     @Override
     public double getprice() {
-        price = 0;
+        double price = 0;
 
         switch (sandwichSize) {
             case FOURINCH -> price += 5.50;

@@ -1,0 +1,7 @@
+========== Order Summary ==========
+Item 1: Drink|MEDIUM|Coke|$2.50
+Item 2: Chips|Fritos|$1.50
+-----------------------------------
+Total Items: 2
+Total Price: $4.00
+===================================

@@ -1,0 +1,9 @@
+========== Order Summary ==========
+Item 1: Sandwich | Toasted: true | Size: EIGHTINCH | Bread: WHEAT | Toppings: [Meat| STEAK, Cheese| CheddarCheese ] | Price: $11.50
+Item 2: Drink|SMALL|Sprite|$2.00
+Item 3: Chips|Fritos|$1.50
+Item 4: Sandwich | Toasted: false | Size: EIGHTINCH | Bread: WHEAT | Toppings: [Topping: MUSHROOMS, Sauce: MAYO, Meat| HAM, Cheese| ProvoloneCheese ] | Price: $12.50
+-----------------------------------
+Total Items: 4
+Total Price: $27.50
+===================================

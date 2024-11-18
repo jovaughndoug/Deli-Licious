@@ -1,16 +1,13 @@
 package com.pluralsight.delilicious;
 
 public class Cheese extends PremiumTopping {
-    private CheeseChoice cheeseChoice;
+    private final CheeseChoice cheeseChoice;
 
     public Cheese(boolean hasExtra, Sandwich.SandwichSize size, CheeseChoice cheeseChoice) {
         super(hasExtra, size);
         this.cheeseChoice = cheeseChoice;
     }
 
-    public CheeseChoice getCheeseChoice() {
-        return cheeseChoice;
-    }
     public enum CheeseChoice{
         //Cheese Choices
         AmericanCheese,

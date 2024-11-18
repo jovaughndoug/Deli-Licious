@@ -1,0 +1,7 @@
+========== Order Summary ==========
+Item 1: Sandwich | Toasted: true | Size: EIGHTINCH | Bread: RYE | Toppings: [Topping: LETTUCE, Sauce: KETCHUP, Topping: GUACAMOLE, Sauce: KETCHUP, Meat| STEAK, Cheese| CheddarCheese ] | Price: $14.10
+Item 2: Chips|Lays|1.50
+-----------------------------------
+Total Items: 2
+Total Price: $15.60
+===================================

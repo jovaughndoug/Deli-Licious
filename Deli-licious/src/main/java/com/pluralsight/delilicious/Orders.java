@@ -33,12 +33,13 @@ public class Orders {
 
     private static int currentOrderNumber = 1;  // counter for order number
 
-    // Generates a unique order number by incrementing the static counter
+    // Generates a unique order number by incrementing the counter
     private int generateOrderNumber() {
+
         return currentOrderNumber++;  // return order number counting
     }
 
-    // Converts the order to a detailed string summary
+     //Converts the order to a detailed string summary
     @Override
     public String toString() {
         StringBuilder orderSummary = new StringBuilder();  // StringBuilder to build the order summary

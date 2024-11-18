@@ -1,7 +1,7 @@
 package com.pluralsight.delilicious;
 
 public class Drinks extends Item {
-    private DrinkSize drinkSize;
+    private  DrinkSize drinkSize;
     private double price;
     private String name;
 
@@ -34,6 +34,6 @@ public class Drinks extends Item {
 
     @Override
     public String toString() {
-        return String.format("Drink|%s|%.2f|%s", drinkSize, price, name); // format the drink price to include two decimals
+        return String.format("Drink|%s|%s|$%.2f", drinkSize, name, price); // format the drink price to include two decimals
     }
 }
